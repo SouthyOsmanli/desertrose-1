@@ -18,6 +18,20 @@
 		allowed = GLOB.security_vest_allowed
 */
 
+//Overarching armor code. Whatever.
+
+/obj/item/clothing/suit/toggle/armor
+	body_parts_covered = CHEST|GROIN
+	cold_protection = CHEST|GROIN
+	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
+	heat_protection = CHEST|GROIN
+	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	strip_delay = 60
+	equip_delay_other = 40
+	max_integrity = 250
+	resistance_flags = NONE
+	armor = list("tier" = 2, "energy" = 16, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	togglename = "collar"
 
 
 
@@ -58,6 +72,15 @@
 	item_state = "vaquero"
 	armor = list("tier" = 3, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 0)
 	flags_inv = HIDEJUMPSUIT
+
+/obj/item/clothing/suit/armor/f13/battlecoat //Maxson's battlecoat from Fallout 4
+	name = "battlecoat"
+	desc = "(III) A heavy padded leather coat, worn by pre-War bomber pilots in the past and post-War zeppelin pilots in the future."
+	icon_state = "battlecoat"
+	item_state = "battlecoat"
+	armor = list("tier" = 3, "energy" = 30, "bomb" = 30, "bio" = 0, "rad" = 30, "fire" = 30, "acid" = 30)
+	strip_delay = 30
+	icon = 'icons/fallout/clothing/suits.dmi'
 
 /obj/item/clothing/suit/armor/f13/leather_jacket/combat/coat
 	name = "combat leather coat"
@@ -120,6 +143,27 @@
 	armor = list("tier" = 5, "energy" = 50, "bomb" = 40, "bio" = 30, "rad" = 20, "fire" = 60, "acid" = 0)
 	slowdown = 0.05
 	strip_delay = 10
+
+/obj/item/clothing/suit/armor/f13/slam
+	name = "slammer raider armor"
+	desc = "(IV) Crude armor that appears to employ a tire of some kind as the shoulder pad. What appears to be a quilt is tied around the waist.<br>Come on and slam and turn your foes to jam!"
+	icon_state = "slam"
+	item_state = "slam"
+	armor = list("tier" = 4, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	flags_inv = HIDEJUMPSUIT
+	strip_delay = 40
+	icon = 'icons/fallout/clothing/suits.dmi'
+
+/obj/item/clothing/suit/armor/bulletproof
+	name = "bulletproof armor"
+	desc = "(IV*) A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	icon_state = "bulletproof"
+	item_state = "armor"
+	blood_overlay_type = "armor"
+	armor = list("tier" = 4, "linebullet" = 50, "energy" = 35, "bomb" = 55, "bio" = 0, "rad" = 0, "fire" = 55, "acid" = 55)
+	strip_delay = 70
+	equip_delay_other = 50
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 //Combat armor (Faction specific is on f13factionarmor.dm)
 /obj/item/clothing/suit/armor/f13/combat
@@ -423,27 +467,6 @@
 	item_state = "advpowerarmor2"
 	armor = list("linemelee" = 400, "linebullet" = 400, "linelaser" = 400, "energy" = 90, "bomb" = 72, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 0, "wound" = 100)
 
-/obj/item/clothing/suit/armor/f13/power_armor/advanced/mk2/wbos
-	name = "advanced Washington power armor"
-	desc = "It's an improved model of the power armor used exclusively by the Washington Brotherhood."
-	icon_state = "apawbos"
-	item_state = "apawbos"
-
-/obj/item/clothing/suit/armor/f13/power_armor/tesla
-	name = "tesla power armor"
-	desc = "A variant of the Enclave's advanced power armor Mk I, jury-rigged with a Tesla device that is capable of dispersing a large percentage of the damage done by directed-energy attacks.<br>As it's made of complex composite materials designed to block most of energy damage - it's notably weaker against kinetic impacts."
-	icon_state = "tesla"
-	item_state = "tesla"
-	armor = list("linemelee" = 200, "linebullet" = 200, "linelaser" = 300, "energy" = 95, "bomb" = 62, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 0, "wound" = 80)
-	var/hit_reflect_chance = 35
-
-/obj/item/clothing/suit/armor/f13/power_armor/tesla/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
-	if(is_energy_reflectable_projectile(object) && (attack_type == ATTACK_TYPE_PROJECTILE) && (def_zone in protected_zones))
-		if(prob(hit_reflect_chance))
-			block_return[BLOCK_RETURN_REDIRECT_METHOD] = REDIRECT_METHOD_DEFLECT
-			return BLOCK_SHOULD_REDIRECT | BLOCK_REDIRECTED | BLOCK_SUCCESS | BLOCK_PHYSICAL_INTERNAL
-	return ..()
-
 /obj/item/clothing/suit/armor/f13/power_armor/mutie
 	name = "large damaged power armor"
 	desc = "(VIII) It's unclear just want kind of power armour this once was. Was it T-51? Was it APA? Maybe it was just a suit of excavator armor? There's no way of knowing. What is clear though, is that the suit cannot be repaired or restored, and it's far too large for a normal human to wear."
@@ -476,141 +499,17 @@
 	flags_inv = HIDEJUMPSUIT
 	strip_delay = 40
 
-//Various
-
-/obj/item/clothing/suit/toggle/armor
-	body_parts_covered = CHEST|GROIN
-	cold_protection = CHEST|GROIN
-	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	heat_protection = CHEST|GROIN
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	strip_delay = 60
-	equip_delay_other = 40
-	max_integrity = 250
-	resistance_flags = NONE
-	armor = list("tier" = 2, "energy" = 16, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	togglename = "collar"
-
-/obj/item/clothing/suit/armor/f13/slam
-	name = "slammer raider armor"
-	desc = "(IV) Crude armor that appears to employ a tire of some kind as the shoulder pad. What appears to be a quilt is tied around the waist.<br>Come on and slam and turn your foes to jam!"
-	icon_state = "slam"
-	item_state = "slam"
-	armor = list("tier" = 4, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	flags_inv = HIDEJUMPSUIT
-	strip_delay = 40
-	icon = 'icons/fallout/clothing/suits.dmi'
-
-/obj/item/clothing/suit/armor/f13/battlecoat //Maxson's battlecoat from Fallout 4
-	name = "battlecoat"
-	desc = "(III) A heavy padded leather coat, worn by pre-War bomber pilots in the past and post-War zeppelin pilots in the future."
-	icon_state = "battlecoat"
-	item_state = "battlecoat"
-	armor = list("tier" = 3, "energy" = 30, "bomb" = 30, "bio" = 0, "rad" = 30, "fire" = 30, "acid" = 30)
-	strip_delay = 30
-	icon = 'icons/fallout/clothing/suits.dmi'
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault
-	name = "command coat"
-	desc = "(III) A heavy pre-war bomber coat, dyed blue with the number '113' embroidered on the back. Most often worn by leaders, such as the Overseer."
-	icon_state = "vault_commandcoat"
-	item_state = "vault_commandcoat"
-	armor = list("tier" = 3)
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault/overseer
-	name = "\improper Overseer's battlecoat"
-	desc = "(III) A heavy pre-war bomber coat, dyed blue with the insignia of the Vault-Tec embroidered on the back. This one is worn by the Coalition's Overseer."
-	icon_state = "overseer_commandcoat"
-	item_state = "overseer_commandcoat"
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault/marshal
-	name = "\improper Marhsal's battlecoat"
-	desc = "(VII) A heavy pre-war bomber coat, dyed blue with the insignia of the Vault-Tec City Coalition embroidered on the back. This one is worn by the Marshals of the Coalition."
-	icon_state = "marshal_commandcoat"
-	item_state = "marshal_commandcoat"
-	armor = list("tier" = 7, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured
-	name = "armoured vault battlecoat"
-	desc = "(IV) A heavy pre-war bomber coat, dyed blue with the insignia of the Vault-Tec City Coalition embroidered on the back. This one is worn by the citizens of the Coalition."
-	icon_state = "armouredvault_commandcoat"
-	item_state = "armouredvault_commandcoat"
-	armor = list("tier" = 4, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured/roadie
-	name = "\improper Roadie's battlecoat"
-	desc = "(IV) A heavy padded duster with the insignia of the Vault-Tec City Coalition embroidered on the back. This one is often worn by the various employed Roadies in the cities."
-	icon_state = "roadie_battlecoat"
-	item_state = "roadie_battlecoat"
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured/roadie/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate)
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured/roadie/fast
-	name = "\improper Roadie's light battlecoat"
-	desc = "(III) A padded duster with the insignia of the Vault-Tec City Coalition embroidered on the back. This one is often worn by the various employed Roadies in the cities."
-	icon_state = "roadie_battlecoat"
-	item_state = "roadie_battlecoat"
-	armor = list("tier" = 3, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
-	slowdown = -0.10
-
-/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured/roadie/fast/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate)
-
-/obj/item/clothing/suit/armor/f13/battlecoat/tan
-	name = "tan battlecoat"
-	desc = "(III) A heavy padded leather coat, worn by pre-War bomber pilots in the past and post-War zeppelin pilots in the future. This one's colors have faded somewhat."
-	icon_state = "battlecoat_tan"
-	item_state = "maxson_battlecoat"
-
-/obj/item/clothing/suit/armor/f13/brahmin_leather_duster
-	name = "brahmin leather duster"
-	desc = "(III) A duster fashioned with tanned brahmin hide. It appears to be more durable than a normal duster. The leather is laser resistant."
-	icon_state = "brahmin_leather_duster"
-	item_state = "brahmin_leather_duster"
-	armor = list("tier" = 3, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
-
-/obj/item/clothing/suit/armor/f13/rustedcowboy
-	name = "rusted cowboy outfit"
-	desc = "(III) A weather treated leather cowboy outfit.  Yeehaw Pard'!"
-	icon_state = "rusted_cowboy"
-	item_state = "rusted_cowboy"
-	armor = list("tier" = 3, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
-
-//Inherited from SS13
-/obj/item/clothing/suit/armor/bulletproof
-	name = "bulletproof armor"
-	desc = "(IV*) A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
-	icon_state = "bulletproof"
-	item_state = "armor"
-	blood_overlay_type = "armor"
-	armor = list("tier" = 4, "linebullet" = 50, "energy" = 35, "bomb" = 55, "bio" = 0, "rad" = 0, "fire" = 55, "acid" = 55)
-	strip_delay = 70
-	equip_delay_other = 50
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
-
-/obj/item/clothing/suit/armor/bone
-	name = "bone armor"
-	desc = "(III) A tribal armor plate, crafted from animal bone."
-	icon_state = "bonearmor"
-	item_state = "bonearmor"
-	blood_overlay_type = "armor"
-	armor = list("tier" = 3, "energy" = 15, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	always_reskinnable = TRUE
-	unique_reskin = list("Old School" = "bonearmor",
-						"New School" = "bonearmoralt",
-						"Alternative New" = "hbonearmor"
-						)
-
-/obj/item/clothing/suit/armor/bone/Initialize()
-	. = ..()
-	AddComponent(/datum/component/armor_plate)
 
 
-//Mutants
+
+
+
+
+///////////
+//MUTANTS//
+///////////
+
+//Due to how mutants are coded they need snowflake armor. Here you'll find their snowflake armor.
 
 /obj/item/clothing/suit/armor/f13/mutie/poncho
 	name = "mutant poncho"

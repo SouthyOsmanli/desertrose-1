@@ -477,3 +477,9 @@
 	desc = "(VIII) This set of power armor once belonged to the Midwestern branch of the Brotherhood of Steel, and now resides here."
 	icon_state = "midwestgrey_pa"
 	item_state = "midwestgrey_pa"
+
+/obj/item/clothing/suit/armor/f13/battlecoat/tan
+	name = "tan battlecoat"
+	desc = "(III) A heavy padded leather coat, worn by pre-War bomber pilots in the past and post-War zeppelin pilots in the future. This one's colors have faded somewhat."
+	icon_state = "battlecoat_tan"
+	item_state = "maxson_battlecoat"

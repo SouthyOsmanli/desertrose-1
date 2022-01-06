@@ -1,5 +1,9 @@
-//FOR BOTH SUITS AND ARMORS BELONGING TO FACTIONS
-//PLEASE PUT CUSTOM ARMORS IN f13armor.dm. All power armors are found in f13armor.dm.
+/*
+This file is for mostly old armor files and unsorted ones, such as raiders, old oasis/vault outfits and PA.
+
+Faction PA has to go here as its code is covered in the F13 armor.dm file. Thus this file is needed near it for whatever reason or it tends to have isuses.
+This is a temporary fix to that; eventually PA and salvaged faction PA should be moved to their f13 files.
+*/
 
 //Raider
 /obj/item/clothing/suit/armor/f13/raider
@@ -166,6 +170,13 @@
 	icon_state = "combat_armor_khan_mk2"
 	item_state = "combat_armor_khan_mk2"
 
+/obj/item/clothing/suit/armor/khan_jacket
+	name = "khan armored jacket"
+	desc = "(IV) The symbol of the greatest pushers."
+	icon_state = "khan_jacket"
+	item_state = "khan_jacket"
+	armor = list("tier" = 4, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+
 //Oasis/Town
 /obj/item/clothing/suit/armor/f13/town
 	name = "town trenchcoat"
@@ -192,13 +203,42 @@
 	icon_state = "towntrench_medium"
 	armor = list("tier" = 4, "energy" = 40, "bomb" = 25, "bio" = 40, "rad" = 35, "fire" = 80, "acid" = 0)
 
-//Great Khan
-/obj/item/clothing/suit/armor/khan_jacket
-	name = "khan armored jacket"
-	desc = "(IV) The symbol of the greatest pushers."
-	icon_state = "khan_jacket"
-	item_state = "khan_jacket"
-	armor = list("tier" = 4, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+/obj/item/clothing/suit/armor/f13/battlecoat/vault
+	name = "command coat"
+	desc = "(III) A heavy pre-war bomber coat, dyed blue with the number '113' embroidered on the back. Most often worn by leaders, such as the Overseer."
+	icon_state = "vault_commandcoat"
+	item_state = "vault_commandcoat"
+	armor = list("tier" = 3)
+
+/obj/item/clothing/suit/armor/f13/battlecoat/vault/overseer
+	name = "Overseer's battlecoat"
+	desc = "(III) A heavy pre-war bomber coat, dyed blue with the insignia of the Vault-Tec embroidered on the back. This one is worn by the Coalition's Overseer."
+	icon_state = "overseer_commandcoat"
+	item_state = "overseer_commandcoat"
+
+/obj/item/clothing/suit/armor/f13/battlecoat/vault/marshal
+	name = "Marhsal's battlecoat"
+	desc = "(VII) A heavy pre-war bomber coat, dyed blue with the insignia of the Vault-Tec City Coalition embroidered on the back. This one is worn by the Marshals of the Coalition."
+	icon_state = "marshal_commandcoat"
+	item_state = "marshal_commandcoat"
+	armor = list("tier" = 7, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
+
+/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured
+	name = "armoured vault battlecoat"
+	desc = "(IV) A heavy pre-war bomber coat, dyed blue with the insignia of the Vault-Tec City Coalition embroidered on the back. This one is worn by the citizens of the Coalition."
+	icon_state = "armouredvault_commandcoat"
+	item_state = "armouredvault_commandcoat"
+	armor = list("tier" = 4, "energy" = 35, "bomb" = 35, "bio" = 40, "rad" = 10, "fire" = 60, "acid" = 10)
+
+/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured/roadie
+	name = "Roadie's battlecoat"
+	desc = "(IV) A heavy padded duster with the insignia of the Vault-Tec City Coalition embroidered on the back. This one is often worn by the various employed Roadies in the cities."
+	icon_state = "roadie_battlecoat"
+	item_state = "roadie_battlecoat"
+
+/obj/item/clothing/suit/armor/f13/battlecoat/vault/armoured/roadie/Initialize()
+	. = ..()
+	AddComponent(/datum/component/armor_plate)
 
 //Wayfarer
 /obj/item/clothing/suit/armor/f13/tribe_armor
@@ -358,6 +398,26 @@
 	desc = "(IX) A set of T-51b power armor put into use by the Brotherhood of Steel."
 	icon_state = "t51bbos"
 	item_state = "t51bbos"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
